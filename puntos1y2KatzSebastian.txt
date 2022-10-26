@@ -1,0 +1,377 @@
+
+C:\Users\Sebi(master) (03-bases-node@0.0.1)
+λ mongosh
+Current Mongosh Log ID: 63586337f4d69e21529b5422
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.0
+Using MongoDB:          6.0.2
+Using Mongosh:          1.6.0
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2022-10-25T19:28:58.787-03:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2022-10-25T19:28:58.788-03:00: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+------
+
+------
+   Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+   metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+   The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+   and anyone you share the URL with. MongoDB may use this information to make product
+   improvements and to suggest MongoDB products and deployment options to you.
+
+   To enable free monitoring, run the following command: db.enableFreeMonitoring()
+   To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+------
+
+test> show dbs
+admin   40.00 KiB
+config  12.00 KiB
+local   72.00 KiB
+test> db
+test
+test> use empresa
+switched to db empresa
+empresa> empresa.createCollection('clientes')
+ReferenceError: empresa is not defined
+empresa> show dbs
+admin   40.00 KiB
+config  60.00 KiB
+local   72.00 KiB
+empresa> db.createCollection('clientes')
+{ ok: 1 }
+empresa> db.createCollection('productos')
+{ ok: 1 }
+empresa> show collections
+clientes
+productos
+empresa> db.clientes.insertOne({nombre: 'Sebastian', apellido: 'Katz', edad: 23, telefono: 12345678, email:'mailfalso@gmail.com'})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6359458dc83cdb2d3450c505")
+}
+empresa> db.clientes.insertOne({nombre: 'Gustavo', apellido: 'Katz', edad: 55, telefono: 12121212, email:'mailfalso2@gmail.com'})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63594596c83cdb2d3450c506")
+}
+empresa> db.clientes.insertOne({nombre: 'Gabriela', apellido: 'Catz', edad: 58, telefono: 34343434, email:'mailfalso3@gmail.com'})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6359459ec83cdb2d3450c507")
+}
+empresa> db.clientes.insertOne({nombre: 'Pedro', apellido: 'Rodriguez', edad: 45, telefono: 65656565, email:'mailfalso4@gmail.com'})
+{
+  acknowledged: true,
+  insertedId: ObjectId("635945a6c83cdb2d3450c508")
+}
+empresa> db.clientes.insertOne({nombre: 'Martin', apellido: 'Rodriguez', edad: 27, telefono: 24242424, email:'mailfalso5@gmail.com'})
+{
+  acknowledged: true,
+  insertedId: ObjectId("635945b0c83cdb2d3450c509")
+}
+empresa> db.productos.insertOne({nombre: 'Teclado', descripcion: 'Teclado inalambrico', stock: 12, precio: 10000})
+{
+  acknowledged: true,
+  insertedId: ObjectId("635945f3c83cdb2d3450c50a")
+}
+empresa> db.productos.insertOne({nombre: 'Mouse', descripcion: 'Mouse inalambrico', stock: 20, precio: 6000})
+{
+  acknowledged: true,
+  insertedId: ObjectId("635945fcc83cdb2d3450c50b")
+}
+empresa> db.productos.insertOne({nombre: 'Monitor', descripcion: 'Monitor LED', stock: 18, precio: 50000})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63594604c83cdb2d3450c50c")
+}
+empresa> db.productos.insertOne({nombre: 'Fuente 750w', descripcion: 'Fuente para la computadora', stock: 6, precio: 23000})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6359460bc83cdb2d3450c50d")
+}
+empresa> db.clientes.find()
+[
+  {
+    _id: ObjectId("6359458dc83cdb2d3450c505"),
+    nombre: 'Sebastian',
+    apellido: 'Katz',
+    edad: 23,
+    telefono: 12345678,
+    email: 'mailfalso@gmail.com'
+  },
+  {
+    _id: ObjectId("63594596c83cdb2d3450c506"),
+    nombre: 'Gustavo',
+    apellido: 'Katz',
+    edad: 55,
+    telefono: 12121212,
+    email: 'mailfalso2@gmail.com'
+  },
+  {
+    _id: ObjectId("6359459ec83cdb2d3450c507"),
+    nombre: 'Gabriela',
+    apellido: 'Catz',
+    edad: 58,
+    telefono: 34343434,
+    email: 'mailfalso3@gmail.com'
+  },
+  {
+    _id: ObjectId("635945a6c83cdb2d3450c508"),
+    nombre: 'Pedro',
+    apellido: 'Rodriguez',
+    edad: 45,
+    telefono: 65656565,
+    email: 'mailfalso4@gmail.com'
+  },
+  {
+    _id: ObjectId("635945b0c83cdb2d3450c509"),
+    nombre: 'Martin',
+    apellido: 'Rodriguez',
+    edad: 27,
+    telefono: 24242424,
+    email: 'mailfalso5@gmail.com'
+  }
+]
+empresa> db.productos.find()
+[
+  {
+    _id: ObjectId("635945f3c83cdb2d3450c50a"),
+    nombre: 'Teclado',
+    descripcion: 'Teclado inalambrico',
+    stock: 12,
+    precio: 10000
+  },
+  {
+    _id: ObjectId("635945fcc83cdb2d3450c50b"),
+    nombre: 'Mouse',
+    descripcion: 'Mouse inalambrico',
+    stock: 20,
+    precio: 6000
+  },
+  {
+    _id: ObjectId("63594604c83cdb2d3450c50c"),
+    nombre: 'Monitor',
+    descripcion: 'Monitor LED',
+    stock: 18,
+    precio: 50000
+  },
+  {
+    _id: ObjectId("6359460bc83cdb2d3450c50d"),
+    nombre: 'Fuente 750w',
+    descripcion: 'Fuente para la computadora',
+    stock: 6,
+    precio: 23000
+  }
+]
+empresa> db.clientes.count()
+DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.
+5
+empresa> db.productos.count()
+4
+empresa> db.clientes.find().sort({edad:1})
+[
+  {
+    _id: ObjectId("6359458dc83cdb2d3450c505"),
+    nombre: 'Sebastian',
+    apellido: 'Katz',
+    edad: 23,
+    telefono: 12345678,
+    email: 'mailfalso@gmail.com'
+  },
+  {
+    _id: ObjectId("635945b0c83cdb2d3450c509"),
+    nombre: 'Martin',
+    apellido: 'Rodriguez',
+    edad: 27,
+    telefono: 24242424,
+    email: 'mailfalso5@gmail.com'
+  },
+  {
+    _id: ObjectId("635945a6c83cdb2d3450c508"),
+    nombre: 'Pedro',
+    apellido: 'Rodriguez',
+    edad: 45,
+    telefono: 65656565,
+    email: 'mailfalso4@gmail.com'
+  },
+  {
+    _id: ObjectId("63594596c83cdb2d3450c506"),
+    nombre: 'Gustavo',
+    apellido: 'Katz',
+    edad: 55,
+    telefono: 12121212,
+    email: 'mailfalso2@gmail.com'
+  },
+  {
+    _id: ObjectId("6359459ec83cdb2d3450c507"),
+    nombre: 'Gabriela',
+    apellido: 'Catz',
+    edad: 58,
+    telefono: 34343434,
+    email: 'mailfalso3@gmail.com'
+  }
+]
+empresa> db.productos.find().sort({stock:-1})
+[
+  {
+    _id: ObjectId("635945fcc83cdb2d3450c50b"),
+    nombre: 'Mouse',
+    descripcion: 'Mouse inalambrico',
+    stock: 20,
+    precio: 6000
+  },
+  {
+    _id: ObjectId("63594604c83cdb2d3450c50c"),
+    nombre: 'Monitor',
+    descripcion: 'Monitor LED',
+    stock: 18,
+    precio: 50000
+  },
+  {
+    _id: ObjectId("635945f3c83cdb2d3450c50a"),
+    nombre: 'Teclado',
+    descripcion: 'Teclado inalambrico',
+    stock: 12,
+    precio: 10000
+  },
+  {
+    _id: ObjectId("6359460bc83cdb2d3450c50d"),
+    nombre: 'Fuente 750w',
+    descripcion: 'Fuente para la computadora',
+    stock: 6,
+    precio: 23000
+  }
+]
+empresa> db.productos.find().sort({precio:1}).limit(1)
+[
+  {
+    _id: ObjectId("635945fcc83cdb2d3450c50b"),
+    nombre: 'Mouse',
+    descripcion: 'Mouse inalambrico',
+    stock: 20,
+    precio: 6000
+  }
+]
+empresa> db.productos.find().sort({precio:-1}).limit(1)
+[
+  {
+    _id: ObjectId("63594604c83cdb2d3450c50c"),
+    nombre: 'Monitor',
+    descripcion: 'Monitor LED',
+    stock: 18,
+    precio: 50000
+  }
+]
+empresa> db.clientes.find().sort({nombre:1}).limit(2)
+[
+  {
+    _id: ObjectId("6359459ec83cdb2d3450c507"),
+    nombre: 'Gabriela',
+    apellido: 'Catz',
+    edad: 58,
+    telefono: 34343434,
+    email: 'mailfalso3@gmail.com'
+  },
+  {
+    _id: ObjectId("63594596c83cdb2d3450c506"),
+    nombre: 'Gustavo',
+    apellido: 'Katz',
+    edad: 55,
+    telefono: 12121212,
+    email: 'mailfalso2@gmail.com'
+  }
+]
+empresa> db.productos.updateOne({nombre: 'Monitor'}, {$set: {precio: 45000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+empresa> db.productos.find({})
+[
+  {
+    _id: ObjectId("635945f3c83cdb2d3450c50a"),
+    nombre: 'Teclado',
+    descripcion: 'Teclado inalambrico',
+    stock: 12,
+    precio: 10000
+  },
+  {
+    _id: ObjectId("635945fcc83cdb2d3450c50b"),
+    nombre: 'Mouse',
+    descripcion: 'Mouse inalambrico',
+    stock: 20,
+    precio: 6000
+  },
+  {
+    _id: ObjectId("63594604c83cdb2d3450c50c"),
+    nombre: 'Monitor',
+    descripcion: 'Monitor LED',
+    stock: 18,
+    precio: 45000
+  },
+  {
+    _id: ObjectId("6359460bc83cdb2d3450c50d"),
+    nombre: 'Fuente 750w',
+    descripcion: 'Fuente para la computadora',
+    stock: 6,
+    precio: 23000
+  }
+]
+empresa> db.clientes.deleteOne({_id: ObjectId("6359459ec83cdb2d3450c507")})
+{ acknowledged: true, deletedCount: 1 }
+empresa> db.clientes.find()
+[
+  {
+    _id: ObjectId("6359458dc83cdb2d3450c505"),
+    nombre: 'Sebastian',
+    apellido: 'Katz',
+    edad: 23,
+    telefono: 12345678,
+    email: 'mailfalso@gmail.com'
+  },
+  {
+    _id: ObjectId("63594596c83cdb2d3450c506"),
+    nombre: 'Gustavo',
+    apellido: 'Katz',
+    edad: 55,
+    telefono: 12121212,
+    email: 'mailfalso2@gmail.com'
+  },
+  {
+    _id: ObjectId("635945a6c83cdb2d3450c508"),
+    nombre: 'Pedro',
+    apellido: 'Rodriguez',
+    edad: 45,
+    telefono: 65656565,
+    email: 'mailfalso4@gmail.com'
+  },
+  {
+    _id: ObjectId("635945b0c83cdb2d3450c509"),
+    nombre: 'Martin',
+    apellido: 'Rodriguez',
+    edad: 27,
+    telefono: 24242424,
+    email: 'mailfalso5@gmail.com'
+  }
+]
+empresa> db.productos.find({},{nombre:1,precio:1,_id:0}).sort({precio:1})
+[
+  { nombre: 'Mouse', precio: 6000 },
+  { nombre: 'Teclado', precio: 10000 },
+  { nombre: 'Fuente 750w', precio: 23000 },
+  { nombre: 'Monitor', precio: 45000 }
+]
+empresa> db.clientes.find({},{nombre:1,email:1,_id:0})
+[
+  { nombre: 'Sebastian', email: 'mailfalso@gmail.com' },
+  { nombre: 'Gustavo', email: 'mailfalso2@gmail.com' },
+  { nombre: 'Pedro', email: 'mailfalso4@gmail.com' },
+  { nombre: 'Martin', email: 'mailfalso5@gmail.com' }
+]
+empresa>
